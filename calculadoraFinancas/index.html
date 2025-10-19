@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Mini Controle de finanças</title>
+</head>
+
+<body>
+    <h1>Controle Financeiro</h1>
+
+    <div class="formulario">
+        <input type="text" id="descricao" placeholder="Descrição">
+        <input type="number" id="valor" placeholder="Valor (R$)">
+        <div class="botoes">
+            <button id="addReceita">Adicionar Receita</button>
+            <button id="addDespesa">Adicionar Despesas</button>
+        </div>
+    </div>
+
+
+    <h2>Transações</h2>
+    <ul id="listaTransacoes"></ul>
+
+    <h2 id="saldo">Saldo Total: R$ 0,00</h2>
+
+    <button id="limpar" class="limpar">Limpar Tudo</button>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
