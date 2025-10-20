@@ -1,0 +1,5 @@
+let baseRetangulo = 10;
+let alturaRetangulo = 20;
+
+let area = baseRetangulo * alturaRetangulo;
+console.log(`A área de um retângulo é ${area.toFixed(2)}`);
