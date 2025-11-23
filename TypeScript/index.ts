@@ -89,3 +89,126 @@ ourTupla.push('Outra coisa');
 const tuplaReadonly: readonly [number, boolean, string] = [5, true, "Teste"];
 // Erro lançado
 //tuplaReadonly.push('outra coisa');
+
+/* Objects (objetos) - Objetos são variáveis com muitos valores dentro */
+const carro: { marca: string, modelo: string, ano: number } = {
+    marca: "Toyota",
+    modelo: "Corolla",
+    ano: 2009
+};
+
+/* O typescript pode inferir os tipos de propriedades com base em seus valores */
+const car = {
+    marca: "Toyota",
+};
+car.marca = "Ford"; // nenhum erro - ele entendeu que "marca" é string.
+//car.marca = 2; // erro
+
+/* No TypeScript um objeto pode ter Propriedades opcionais.
+Propriedades opcionais são propriedades que não precisam ser definidas na
+definição do objeto. Elas podem ser usadas depois ou não, são opcionais */
+const carro2: { modelo: string, motor?: number } = {
+    modelo: "Uno"
+};
+carro2.motor = 1.0;
+
+/* Assinaturas de índice - As assinaturas de índice podem ser usadas para objetos sem uma
+lista definida de propriedades. */
+
+const nomeIdade: { [index: string]: number } = {};
+nomeIdade["Adrian"] = 31;
+//nomeIdade["Lucas"] = "Cinquenta"; // erro
+
+// ALIASES (Criando nossos tipos personalizados)
+type AnoVeiculo = number;
+type MarcaVeiculo = string;
+type ModeloVeiculo = string;
+type Carro = {
+    ano: AnoVeiculo,
+    marca: MarcaVeiculo,
+    modelo: ModeloVeiculo
+};
+
+// EXEMPLO DE USO
+const uno: AnoVeiculo = 2001;
+const gol: MarcaVeiculo = "Wolksvagen";
+const TSI: ModeloVeiculo = "Up";
+const laFerrari: Carro = {
+    ano: 2002,
+    marca: "Ferrari",
+    modelo: "La Ferrari"
+};
+
+// INTERFACES usadas em objetos
+interface Retangulo {
+    altura: number,
+    largura: number
+};
+
+// EXEMPLO DE USO
+const novoItem: Retangulo = {
+    altura: 20,
+    largura: 10
+};
+
+// ESTENDENDO INTERFACES - Herdar propriedades do original e adicionar algo.
+interface RetanguloColorido extends Retangulo {
+    cor: string
+};
+
+// USO
+const outroItem: RetanguloColorido = {
+    altura: 20,
+    largura: 10,
+    cor: "Azul"
+};
+
+/* FUNÇÕES
+TypeScript tem uma sintaxe específica para digitar parâmetros de função e valores de retorno.*/
+
+// DEFININDO O TIPO DE RETORNO DA FUNÇÃO
+function getTime(): number {
+    return new Date().getTime();
+}
+
+// Void - QUANDO A FUNÇÃO NÃO TEM RETORNO
+function printHello(): void {
+    console.log("Hello");
+}
+
+// Tipos em parâmetros de função
+function multiplicacao(a: number, b: number): number {
+    return a + b;
+}
+
+// Parâmetros opcionais
+// o operador "?" aqui marca que o parâmetro 'c' é opcional
+function add(a: number, b: number, c?: number): number {
+    return a + b + (c || 0);
+}
+
+// Parâmetros com valores iniciais padrão
+function saudacao(nome: string = 'Adrian'): void {
+    console.log(`Olá, ${nome}!`);
+}
+saudacao(); // Olá, Adrian!
+saudacao("Aurora"); // Olá, Aurora!
+
+// Parâmetros nomeados( Named Parameters)
+function hello({ nome, idade }: { nome: string, idade: number }): void {
+    console.log(`Hello, ${nome}! Você tem ${idade} anos.`);
+}
+
+hello({ nome: "Adrian", idade: 24 }); // saida: Hello, Adrian! Você tem 24 anos
+
+/* GENERICS (Genéricos)
+Pense nos generics como "caixas" flexíveis, onde você pode colocar
+diferentes tipos de dados. É um coringa, que pode aceitar valor. */
+
+function imprimirValor<T>(valor: T): void {
+    console.log(valor);
+}
+
+imprimirValor<number>(42); // Imprime 42
+imprimirValor<string>("Olá"); // Imprime "Olá"
+imprimirValor<boolean>(true); // Imprime true
